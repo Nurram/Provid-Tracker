@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">PROVID TRACKER</string>
+
+    <string name="auth">Auth</string>
+    <string name="logged_in">Logged In</string>
+    <string name="username">Username</string>
+
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="or">Or</string>
+    <string name="incorrect_email_pass">Incorrect email or password!</string>
+
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="please_fill_fields">Please fill all fields!</string>
+    <string name="enter_valid_email">Enter valid email!</string>
+    <string name="password_short">Password is too short!</string>
+    <string name="password_not_match">Password are not match!</string>
+    <string name="email_used">Email are used!</string>
+
+    <string name="knowledge">Knowledge</string>
+    <string name="home">Home</string>
+    <string name="about_us">About Us</string>
+
+    <string name="greetings">Hi, Pengguna Provid Trackers\nJangan lupa terapkan prokes yaa..</string>
+    <string name="x_6">%d / %d</string>
+    <string name="logout"><u>Logout</u></string>
+    <string name="no_habit">No Habit Found!</string>
+
+    <string name="tracker_setting">Tracker Setting</string>
+    <string name="name">Name</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="choose_time">Choose Time</string>
+    <string name="save">Save</string>
+    <string name="selected_date">Selected Date:</string>
+    <string name="selected_time">Selected Time:</string>
+
+    <string name="group_1">Kelompok 1</string>
+    <string name="group_member">- Afif\n- Alfi\n- Dzaky\n- Faris\n- Guntur\n- Hatta\n - Nia\n- Widia\n- Zavan</string>
+
+    <string name="why_prokes">Kenapa harus menerapkan prokes?</string>
+</resources>
