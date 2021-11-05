@@ -40,4 +40,8 @@
     <string name="group_member">- Afif\n- Alfi\n- Dzaky\n- Faris\n- Guntur\n- Hatta\n - Nia\n- Widia\n- Zavan</string>
 
     <string name="why_prokes">Kenapa harus menerapkan prokes?</string>
+
+    <string name="habit">Habit</string>
+    <string name="hey_you">Hei kamu disana</string>
+    <string name="do_not_forget">Jangan lupa prokesnya: %s</string>
 </resources>

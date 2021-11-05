@@ -14,7 +14,7 @@
         <activity
             android:name=".view.ui.activity.add_habit.AddHabitActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.ui.activity.dashboard.DashboardActivity"
             android:exported="true"
@@ -37,6 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".view.utils.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

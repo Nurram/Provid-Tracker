@@ -1,8 +1,11 @@
 package com.faris.providtracker.view.ui.fragment.home
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +15,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.faris.providtracker.R
 import com.faris.providtracker.databinding.FragmentHomeBinding
+import com.faris.providtracker.view.local.entities.Habit
 import com.faris.providtracker.view.ui.ViewModelFactory
 import com.faris.providtracker.view.ui.activity.add_habit.AddHabitActivity
 import com.faris.providtracker.view.ui.activity.login.LoginActivity
+import com.faris.providtracker.view.utils.AlarmReceiver
 
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
@@ -39,10 +44,18 @@ class HomeFragment : Fragment() {
 
         val adapter = HomeAdapter {
             viewModel.updateHabit(it)
+            cancelAlarm(it)
         }
 
+        adapter.setOnLongClickListener(object : HomeAdapter.OnLongClickListener {
+            override fun onLongClick(habit: Habit) {
+                val i = Intent(requireContext(), AddHabitActivity::class.java)
+                i.putExtra(getString(R.string.habit), habit)
+                startActivity(i)
+            }
+        })
+
         val loggedInEmail = viewModel.getFromPref(getString(R.string.logged_in))
-        Log.d("TAG", "loggedin: $loggedInEmail")
         viewModel.getHabitByEmail(loggedInEmail!!)?.observe(viewLifecycleOwner) {
             adapter.setData(it)
             val doneHabits = it.filter { habit -> habit.isDone }
@@ -71,6 +84,28 @@ class HomeFragment : Fragment() {
                 startActivity(i)
             }
         }
+    }
+
+    private fun cancelAlarm(habit: Habit) {
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(requireContext(), AlarmReceiver::class.java)
+        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getBroadcast(
+                requireContext(),
+                habit.id,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        } else {
+            PendingIntent.getBroadcast(
+                requireContext(),
+                habit.id,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        }
+
+        alarmManager.cancel(pendingIntent)
     }
 
     companion object {

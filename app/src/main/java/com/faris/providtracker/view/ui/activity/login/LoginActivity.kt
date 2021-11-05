@@ -2,7 +2,6 @@ package com.faris.providtracker.view.ui.activity.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -27,9 +26,9 @@ class LoginActivity : AppCompatActivity() {
             btnLogin.setOnClickListener {
                 val email = etEmail.text.toString()
                 val password = etPassword.text.toString()
-                Log.d("TAG", "$email $password")
+
                 viewModel.getUserByEmailAndPassword(email, password)?.observe(this@LoginActivity) {
-                    Log.d("TAG", "$it")
+
                     if (it.isNotEmpty()) {
                         viewModel.saveToPref(getString(R.string.logged_in), email)
                         val i = Intent(this@LoginActivity, DashboardActivity::class.java)
