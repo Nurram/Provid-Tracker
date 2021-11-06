@@ -42,10 +42,7 @@ class HomeFragment : Fragment() {
         val viewModelFactory = ViewModelFactory(requireActivity().application, sharedPreferences)
         val viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        val adapter = HomeAdapter {
-            viewModel.updateHabit(it)
-            cancelAlarm(it)
-        }
+        val adapter = HomeAdapter { viewModel.updateHabit(it) }
 
         adapter.setOnLongClickListener(object : HomeAdapter.OnLongClickListener {
             override fun onLongClick(habit: Habit) {
