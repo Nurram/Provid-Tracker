@@ -32,8 +32,9 @@ class RegisterViewModel(
 
     fun initHabit(): List<Habit> {
         val c = Calendar.getInstance()
-        c.set(Calendar.HOUR_OF_DAY, 7)
-        c.set(Calendar.MINUTE, 50)
+        c.set(Calendar.HOUR_OF_DAY, 6)
+        c.set(Calendar.MINUTE, 0)
+        c.set(Calendar.SECOND, 0)
 
         return listOf(
             Habit(1, "Pakai Masker", c.time, false, "all"),
