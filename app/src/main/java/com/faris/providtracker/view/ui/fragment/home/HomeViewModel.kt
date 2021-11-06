@@ -18,9 +18,16 @@ class HomeViewModel(
 
     fun getHabitByEmail(email: String) = mainRepository.getHabitByEmail(email)
 
+    fun setDefaultHabitToFalse(ids: List<Int>) =
+        viewModelScope.launch { mainRepository.setDefaultHabitToFalse(ids) }
+
     fun getFromPref(key: String) = sharedPreferences.getString(key, "")
 
     fun removeFromPref(key: String) {
         sharedPreferences.edit().remove(key).apply()
+    }
+
+    fun putToPref(key: String, value: String) {
+        sharedPreferences.edit().putString(key,value).apply()
     }
 }

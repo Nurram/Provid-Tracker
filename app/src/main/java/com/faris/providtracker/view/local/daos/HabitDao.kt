@@ -18,4 +18,7 @@ interface HabitDao {
 
     @Query("select * from habit where email=:email or email='all'")
     fun getHabitByEmail(email: String): LiveData<List<Habit>>
+
+    @Query("update habit set isDone=0 where id in (:ids)")
+    suspend fun setDefaultHabitToFalse(ids: List<Int>)
 }

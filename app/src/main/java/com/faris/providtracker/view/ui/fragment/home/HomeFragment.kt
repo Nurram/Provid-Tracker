@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.faris.providtracker.view.ui.ViewModelFactory
 import com.faris.providtracker.view.ui.activity.add_habit.AddHabitActivity
 import com.faris.providtracker.view.ui.activity.login.LoginActivity
 import com.faris.providtracker.view.utils.AlarmReceiver
+import java.util.*
 
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
@@ -39,8 +41,20 @@ class HomeFragment : Fragment() {
             getString(R.string.auth),
             AppCompatActivity.MODE_PRIVATE
         )
+
         val viewModelFactory = ViewModelFactory(requireActivity().application, sharedPreferences)
         val viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+
+        val currentCal = Calendar.getInstance()
+        val currentDate =
+            "${currentCal.get(Calendar.DAY_OF_MONTH)}/${currentCal.get(Calendar.MONTH)}/${currentCal.get(Calendar.YEAR)}"
+        val savedDate = viewModel.getFromPref("date")
+        val ids = listOf(1, 2, 3, 4, 5, 6)
+
+        if (currentDate != savedDate) {
+            viewModel.setDefaultHabitToFalse(ids)
+            viewModel.putToPref("date", currentDate)
+        }
 
         val adapter = HomeAdapter { viewModel.updateHabit(it) }
 

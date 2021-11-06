@@ -19,4 +19,6 @@ class MainRepository(private val db: MainDb?) {
     suspend fun updateHabit(habit: Habit) = db?.habitDao?.updateHabit(habit)
 
     fun getHabitByEmail(email: String) = db?.habitDao?.getHabitByEmail(email)
+
+    suspend fun setDefaultHabitToFalse(ids: List<Int>) = db?.habitDao?.setDefaultHabitToFalse(ids)
 }
