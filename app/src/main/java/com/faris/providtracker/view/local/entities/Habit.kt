@@ -15,7 +15,7 @@ data class Habit(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val dateTime: Date,
+    var dateTime: Date,
     var isDone: Boolean,
     val email: String
 ) : Parcelable

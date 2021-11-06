@@ -16,6 +16,6 @@ interface HabitDao {
     @TypeConverters(DateConverter::class)
     suspend fun updateHabit(habit: Habit)
 
-    @Query("select * from habit where email=:email")
+    @Query("select * from habit where email=:email or email='all'")
     fun getHabitByEmail(email: String): LiveData<List<Habit>>
 }
